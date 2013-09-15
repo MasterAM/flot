@@ -255,6 +255,9 @@ More detail and specific examples can be found in the included HTML file.
 			var canvasWidth = plot.getPlaceholder().width(),
 				canvasHeight = plot.getPlaceholder().height(),
 				legendWidth = target.children().filter(".legend").children().width() || 0;
+			var radius = options.series.pie.radius;
+			if (options.series.pie.radius < 1)
+			    radius *= maxRadius;	
 
 			ctx = newCtx;
 
@@ -297,10 +300,10 @@ More detail and specific examples can be found in the included HTML file.
 				centerLeft += options.series.pie.offset.left;
 			}
 
-			if (centerLeft < maxRadius) {
-				centerLeft = maxRadius;
-			} else if (centerLeft > canvasWidth - maxRadius) {
-				centerLeft = canvasWidth - maxRadius;
+			if (centerLeft < radius) {
+				centerLeft = radius;
+			} else if (centerLeft > canvasWidth - radius) {
+				centerLeft = canvasWidth - radius;
 			}
 
 			var slices = plot.getData(),
